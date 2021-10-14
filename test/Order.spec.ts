@@ -23,15 +23,27 @@ describe('Order', () => {
 
 	})
 
-		test('Deve criar um pedido com três itens com cupom de desconto.', () => {
+	test('Deve criar um pedido com três itens com cupom de desconto.', () => {
 		const order = new Order('567.541.780-00');
 		order.addItem(new Item(1, "Instrumentos Musicais", "Guitarra", 1000), 1);
 		order.addItem(new Item(2, "Instrumentos Musicais", "Amplificador", 5000), 1);
-			order.addItem(new Item(3, "Instrumentos Musicais", "Cabo", 30), 3);
-			order.addCoupon(new Coupon("VALE20", 20));
+		order.addItem(new Item(3, "Instrumentos Musicais", "Cabo", 30), 3);
+		order.addCoupon(new Coupon("VALE20", 20));
 		const total = order.getTotal();
 
 		expect(total).toBe(6090 * 0.8);
+
+	})
+
+	test('Deve criar um pedido com três itens com cupom de desconto expirado.', () => {
+		const order = new Order('567.541.780-00', new Date("2021-10-10"));
+		order.addItem(new Item(1, "Instrumentos Musicais", "Guitarra", 1000), 1);
+		order.addItem(new Item(2, "Instrumentos Musicais", "Amplificador", 5000), 1);
+		order.addItem(new Item(3, "Instrumentos Musicais", "Cabo", 30), 3);
+		order.addCoupon(new Coupon("VALE20", 20, new Date("2021-03-01")));
+		const total = order.getTotal();
+
+		expect(total).toBe(6090);
 
 	})
 })

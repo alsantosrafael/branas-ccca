@@ -6,4 +6,10 @@ describe('Coupon', () => {
 		const isExpired = cupom.isExpired(new Date("2021-10-10"))
 		expect(isExpired).toBeFalsy()
 	})
+
+		test("Não deve criar um cupom inválido", () => {
+		const cupom = new Coupon("VALE20", 20, new Date("2021-09-14"))
+		const isExpired = cupom.isExpired(new Date("2021-10-10"))
+		expect(isExpired).toBeTruthy()
+	})
 })

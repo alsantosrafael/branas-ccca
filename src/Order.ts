@@ -4,22 +4,29 @@ import Item from "./Item";
 import OrderItem from "./OrderItem";
 
 export default class Order {
-	cpf: Cpf;
-	orderItems: OrderItem[];
-	coupon: Coupon | undefined;
+	private cpf: Cpf;
+	private orderItems: OrderItem[];
+	private coupon: Coupon | undefined;
+	private freight: number;
 
 	constructor(cpf: string, readonly issueDate: Date = new Date()) {
 		this.cpf = new Cpf(cpf);
 		this.orderItems = [];
+		this.freight = 0;
 	}
 
 	addItem(item: Item, quantity: number) {
+		this.freight += item.getFreight() * quantity;
 		this.orderItems.push(new OrderItem(item.idItem, item.price, quantity));
 	}
 
 	addCoupon(coupon: Coupon) {
 		if (coupon.isExpired(this.issueDate)) return;
 		this.coupon = coupon
+	}
+
+	getFreight() {
+		return this.freight;
 	}
 
 

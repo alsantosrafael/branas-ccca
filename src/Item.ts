@@ -12,7 +12,7 @@ export default class Item {
 	}
 
 	getFreight() {
-		return 1000 * this.getVolume() * (this.getDensity() / 100);
-
+		const freight =  1000 * this.getVolume() * (this.getDensity() / 100);
+		return freight >= 10 ? freight : 10;
 	}
 }

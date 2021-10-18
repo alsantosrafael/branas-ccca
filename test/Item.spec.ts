@@ -16,9 +16,9 @@ describe('Item', () => {
 		expect(item.getDensity()).toBe(100);
 	});
 
-	test("Deve criar um item e calcular seu frete"), () => {
+	test("Deve criar um item e calcular seu frete", () => {
 		const item = new Item(1, "Instrumentos Musicais", "Guitarra", 1000, 100, 30, 10, 3);
 		expect(item.getFreight()).toBe(30);
-	}
+	});
 
 })

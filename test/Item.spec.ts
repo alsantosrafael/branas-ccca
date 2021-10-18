@@ -7,9 +7,13 @@ describe('Item', () => {
 	});
 
 	test("deve criar um item e calcular o volume", () => {
-		const item = new Item(1, "Instrumentos Musicais", "Guitarra", 1000, 100, 30, 10 );
+		const item = new Item(1, "Instrumentos Musicais", "Guitarra", 1000, 100, 30, 10);
 		expect(item.getVolume()).toBe(0.03);
+	});
 
-	})
+	test("deve criar um item e calcular sua densidade", () => {
+		const item = new Item(1, "Instrumentos Musicais", "Guitarra", 1000, 100, 30, 10, 3);
+		expect(item.getDensity()).toBe(100);
+	});
 
 })

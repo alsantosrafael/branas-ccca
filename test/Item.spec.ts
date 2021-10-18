@@ -21,4 +21,9 @@ describe('Item', () => {
 		expect(item.getFreight()).toBe(30);
 	});
 
+		test("Deve criar um item e calcular o frete mínimo", () => {
+		const item = new Item(3, "Instrumentos Musicais", "cabo", 30, 10, 10, 10, 0.9);
+		expect(item.getFreight()).toBe(10);
+	});
+
 })
